@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 
-Route::resource('platges', 'PlatjaController');
+Route::get('/platges', 'PlatjaController@index')->name('platges.list');
+Route::get('/platges/{platja}', 'PlatjaController@show')->name('platges.show');

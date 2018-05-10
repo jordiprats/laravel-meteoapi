@@ -61,9 +61,27 @@ class PlatjaController extends Controller
    * @param  \App\Platja  $platja
    * @return \Illuminate\Http\Response
    */
-  public function show(Platja $platja)
+  public function show($platja)
   {
-    //
+    //http://meteo.cat/prediccio/platges/tossa-de-mar-de-la-mar-menuda
+    //TODO: caching
+    $c = curl_init('http://meteo.cat/prediccio/platges/'.$platja);
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    //curl_setopt(... other options you want...)
+
+    $html = curl_exec($c);
+
+    if (curl_error($c))
+        die(curl_error($c));
+
+    // Get the status code
+    $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
+
+    curl_close($c);
+
+    preg_match('/\bdades: (.*),/', $html, $matches, PREG_OFFSET_CAPTURE);
+
+    return [ 'prediccio' => json_decode($matches[1][0]) ];
   }
 
   /**
