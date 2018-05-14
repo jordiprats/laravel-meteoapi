@@ -70,27 +70,29 @@ class GetMunicipis implements ShouldQueue
       {
         $comarca->nom = $fetched_municipi->comarca->nom;
 
-        $comarca->commit();
+        $comarca->commit;
       }
 
       if(!$municipi)
       {
         $municipi = Municipi::create([
-          'meteo_id'  => $fetched_municipi->codi,
-          'nom'       => $fetched_municipi->nom,
-          'slug'      => $fetched_municipi->slug,
-          'latitude'  => $fetched_municipi->coordenades->latitud,
-          'longitude' => $fetched_municipi->coordenades->longitud,
+          'meteo_id'   => $fetched_municipi->codi,
+          'nom'        => $fetched_municipi->nom,
+          'slug'       => $fetched_municipi->slug,
+          'latitude'   => $fetched_municipi->coordenades->latitud,
+          'longitude'  => $fetched_municipi->coordenades->longitud,
+          'comarca_id' => $comarca->id,
         ]);
       }
       else
       {
-        $municipi->nom       = $fetched_municipi->nom;
-        $municipi->slug      = $fetched_municipi->slug;
-        $municipi->latitude  = $fetched_municipi->coordenades->latitud;
-        $municipi->longitude = $fetched_municipi->coordenades->longitud;
+        $municipi->nom        = $fetched_municipi->nom;
+        $municipi->slug       = $fetched_municipi->slug;
+        $municipi->latitude   = $fetched_municipi->coordenades->latitud;
+        $municipi->longitude  = $fetched_municipi->coordenades->longitud;
+        $municipi->comarca_id = $comarca->id;
 
-        $municipi->commit();
+        $municipi->commit;
       }
     }
   }
