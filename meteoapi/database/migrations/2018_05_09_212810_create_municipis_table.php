@@ -30,8 +30,8 @@ class CreateMunicipisTable extends Migration
         $table->integer('meteo_id');
         $table->string('nom');
         $table->string('slug')->nullable();
-        $table->double('latitude', 10, 16);
-        $table->double('longitude', 10, 16);
+        $table->double('latitude', 10, 6);
+        $table->double('longitude', 10, 6);
         $table->integer('comarca_id')->references('id')->on('comarques')->nullable();
         $table->timestamps();
       });
