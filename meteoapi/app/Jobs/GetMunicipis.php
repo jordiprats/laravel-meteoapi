@@ -32,12 +32,12 @@ class GetMunicipis implements ShouldQueue
    */
   public function handle()
   {
-    $municipis = MunicipiController::getMunicipis();
+    $fetched_municipis = MunicipiController::getMunicipis();
 
-    foreach($municipis as $municipi)
+    foreach($fetched_municipis as $fetched_municipi)
     {
-      $municipi = Municipi::where(['meteo_id' => $municipi->codi])->first();
-      $comarca = Comarca::where(['meteo_id' => $municipi->comarca->codi])->first();
+      $municipi = Municipi::where(['meteo_id' => $fetched_municipi->codi])->first();
+      $comarca = Comarca::where(['meteo_id' => $fetched_municipi->comarca->codi])->first();
 
       // stdClass Object
       // (
@@ -61,30 +61,35 @@ class GetMunicipis implements ShouldQueue
       if(!$comarca)
       {
         $comarca = Comarca::create([
-          'meteo_id' => $municipi->comarca->codi,
-          'nom' => $municipi->comarca->nom,
+          'meteo_id' => $fetched_municipi->comarca->codi,
+          'nom' => $fetched_municipi->comarca->nom,
         ]);
       }
       else
       {
-        $comarca->nom=$municipi->comarca->nom;
+        $comarca->nom=$fetched_municipi->comarca->nom;
 
         $comarca->commit();
       }
 
       if(!$municipi)
       {
-        Municipi::create([
-          'meteo_id' => $municipi->codi,
-          'nom'      => $municipi->nom,
-          'slug' => $municipi->slug,
-          'latitude' => $municipi->coordenades->latitud,
-          'longitude' => $municipi->coordenades->longitud,
+        $municipi = Municipi::create([
+          'meteo_id' => $fetched_municipi->codi,
+          'nom'      => $fetched_municipi->nom,
+          'slug' => $fetched_municipi->slug,
+          'latitude' => $fetched_municipi->coordenades->latitud,
+          'longitude' => $fetched_municipi->coordenades->longitud,
         ]);
       }
       else
       {
+        $municipi->nom=$fetched_municipi->nom;
+        $municipi->slug=$fetched_municipi->slug;
+        $municipi->latitude = $fetched_municipi->coordenades->latitud;
+        $municipi->longitude = $fetched_municipi->coordenades->longitud;
 
+        $municipi->commit();
       }
     }
   }
