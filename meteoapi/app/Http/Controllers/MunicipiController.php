@@ -7,6 +7,26 @@ use Illuminate\Http\Request;
 
 class MunicipiController extends Controller
 {
+  public static function getMunicipis()
+  {
+    $c = curl_init('http://meteo.cat/prediccio/municipal');
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    //curl_setopt(... other options you want...)
+
+    $html = curl_exec($c);
+
+    if (curl_error($c))
+        die(curl_error($c));
+
+    // Get the status code
+    $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
+
+    curl_close($c);
+
+    preg_match('/Meteocat.cercadorMunicipi\(([^\)]*)\)/', $html, $matches, PREG_OFFSET_CAPTURE);
+
+    return json_decode($matches[1][0]);
+  }
   /**
    * Display a listing of the resource.
    *

@@ -20,4 +20,4 @@ Route::get('/platges', 'PlatjaController@index')->name('platges.list');
 Route::get('/platges/{platja}', 'PlatjaController@show')->name('platges.show');
 
 Route::get('/municipis', 'MunicipiController@index')->name('municipis.list');
-Route::get('/municipis', 'MunicipiController@show')->name('municipis.show');
+Route::get('/municipis/{id}', 'MunicipiController@show')->name('municipis.show');
