@@ -14,7 +14,7 @@ class GetMunicipisCmd extends Command
    *
    * @var string
    */
-  protected $signature = 'get:municipis';
+  protected $signature = 'meteoapi:getmunicipis';
 
   /**
    * The console command description.
