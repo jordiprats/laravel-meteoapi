@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\PlatjaController;
 use App\Municipi;
 use App\Platja;
@@ -33,6 +34,8 @@ class GetPlatges implements ShouldQueue
      */
     public function handle()
     {
+      Log::info("running job GetPlatges");
+
       $fetched_platges = PlatjaController::getPlatges();
 
       foreach($fetched_platges as $fetched_platja)
@@ -70,8 +73,8 @@ class GetPlatges implements ShouldQueue
             'slug'           => $fetched_platja->slug,
             'latitude'       => $fetched_platja->coordenades->latitud,
             'latitude_ceil'  => intval(ceil($fetched_platja->coordenades->latitud)),
-            'longitude'      => $fetched_platja->coordenades->longitude,
-            'longitude_ceil' => intval(ceil($fetched_platja->coordenades->longitude)),
+            'longitude'      => $fetched_platja->coordenades->longitut,
+            'longitude_ceil' => intval(ceil($fetched_platja->coordenades->longitut)),
             'municipi_id'    => $municipi->id,
           ]);
         }
@@ -81,8 +84,8 @@ class GetPlatges implements ShouldQueue
           $platja->slug           = $fetched_platja->slug;
           $platja->latitude       = $fetched_platja->coordenades->latitud;
           $platja->latitude_ceil  = intval(ceil($fetched_platja->coordenades->latitud));
-          $platja->longitude      = $fetched_platja->coordenades->longitude;
-          $platja->longitude_ceil = intval(ceil($fetched_platja->coordenades->longitude));
+          $platja->longitude      = $fetched_platja->coordenades->longitut;
+          $platja->longitude_ceil = intval(ceil($fetched_platja->coordenades->longitut));
           $platja->municipi_id    = $municipi->id;
 
           $platja->commit;

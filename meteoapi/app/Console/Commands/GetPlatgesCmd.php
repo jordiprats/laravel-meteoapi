@@ -42,7 +42,7 @@ class GetPlatgesCmd extends Command
   {
     try
     {
-      Log::info("job GetPlatges");
+      Log::info("scheduled job GetPlatges");
       dispatch(new GetPlatges());
     }
     catch(\Exception $e)

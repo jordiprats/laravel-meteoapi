@@ -42,7 +42,7 @@ class GetMunicipisCmd extends Command
   {
     try
     {
-      Log::info("job GetMunicipis");
+      Log::info("scheduled job GetMunicipis");
       dispatch(new GetMunicipis());
     }
     catch(\Exception $e)

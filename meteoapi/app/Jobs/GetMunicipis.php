@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\MunicipiController;
 use App\Municipi;
 use App\Comarca;
@@ -33,6 +34,7 @@ class GetMunicipis implements ShouldQueue
    */
   public function handle()
   {
+    Log::info("running job GetMunicipis");
     $fetched_municipis = MunicipiController::getMunicipis();
 
     foreach($fetched_municipis as $fetched_municipi)
