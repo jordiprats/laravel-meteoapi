@@ -48,16 +48,13 @@ class GetPlatges implements ShouldQueue
           try
           {
             Log::info("municipi ".$fetched_platja->municipi." no trobat");
-            Log::info("job GetMunicipis & rerun GetPlatjes");
-            dispatch(new GetMunicipis());
-            dispatch(new GetPlatges());
           }
           catch(\Exception $e)
           {
             Log::info("-_(._.)_-");
             Log::info($e);
           }
-          return;
+          continue;
         }
 
         // municipi	"Alcanar"
