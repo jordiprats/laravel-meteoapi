@@ -31,7 +31,11 @@ class CreateMunicipisTable extends Migration
         $table->string('nom');
         $table->string('slug')->nullable();
         $table->double('latitude', 10, 6);
+        $table->integer('latitude_ceil');
+        $table->index('latitude_ceil');
         $table->double('longitude', 10, 6);
+        $table->integer('longitude_ceil');
+        $table->index('longitude_ceil');
         $table->integer('comarca_id')->references('id')->on('comarques');
         $table->timestamps();
       });

@@ -73,24 +73,33 @@ class GetMunicipis implements ShouldQueue
         $comarca->commit;
       }
 
+      if(!$fetched_municipi->slug)
+        $municipi_slug=str_slug($fetched_municipi->nom, "-");
+      else
+        $municipi_slug=$fetched_municipi->slug;
+
       if(!$municipi)
       {
         $municipi = Municipi::create([
-          'meteo_id'   => $fetched_municipi->codi,
-          'nom'        => $fetched_municipi->nom,
-          'slug'       => $fetched_municipi->slug,
-          'latitude'   => $fetched_municipi->coordenades->latitud,
-          'longitude'  => $fetched_municipi->coordenades->longitud,
-          'comarca_id' => $comarca->id,
+          'meteo_id'         => $fetched_municipi->codi,
+          'nom'              => $fetched_municipi->nom,
+          'slug'             => $municipi_slug,
+          'latitude'         => $fetched_municipi->coordenades->latitud,
+          'latitude_ceil'    => intval(ceil($fetched_municipi->coordenades->latitud)),
+          'longitude'        => $fetched_municipi->coordenades->longitud,
+          'longitude_ceil'   => intval(ceil($fetched_municipi->coordenades->longitud)),
+          'comarca_id'       => $comarca->id,
         ]);
       }
       else
       {
-        $municipi->nom        = $fetched_municipi->nom;
-        $municipi->slug       = $fetched_municipi->slug;
-        $municipi->latitude   = $fetched_municipi->coordenades->latitud;
-        $municipi->longitude  = $fetched_municipi->coordenades->longitud;
-        $municipi->comarca_id = $comarca->id;
+        $municipi->nom              = $fetched_municipi->nom;
+        $municipi->slug             = $municipi_slug;
+        $municipi->latitude         = $fetched_municipi->coordenades->latitud;
+        $municipi->latitude_ceil    = intval(ceil($fetched_municipi->coordenades->latitud));
+        $municipi->longitude        = $fetched_municipi->coordenades->longitud;
+        $municipi->longitude_ceil   = intval(ceil($fetched_municipi->coordenades->longitud));
+        $municipi->comarca_id       = $comarca->id;
 
         $municipi->commit;
       }
