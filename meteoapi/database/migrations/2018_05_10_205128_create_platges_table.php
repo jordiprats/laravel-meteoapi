@@ -21,7 +21,6 @@ class CreatePlatgesTable extends Migration
       // slug	"alcanar-del-marjal"
       Schema::create('platges', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('meteo_id');
         $table->string('nom');
         $table->string('slug')->nullable();
         $table->double('latitude', 10, 6);

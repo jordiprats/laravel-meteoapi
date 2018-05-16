@@ -7,6 +7,27 @@ use Illuminate\Http\Request;
 
 class PlatjaController extends Controller
 {
+  public static function getPlatges()
+  {
+    $c = curl_init('http://meteo.cat/prediccio/platges');
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    //curl_setopt(... other options you want...)
+
+    $html = curl_exec($c);
+
+    if (curl_error($c))
+        die(curl_error($c));
+
+    // Get the status code
+    $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
+
+    curl_close($c);
+
+    preg_match('/metadadesPuntsPlatges: (.*),/', $html, $matches, PREG_OFFSET_CAPTURE);
+
+    return json_decode($matches[1][0]);
+  }
+
   public static function fetchPlatja($platja_slug)
   {
     //http://meteo.cat/prediccio/platges/tossa-de-mar-de-la-mar-menuda
