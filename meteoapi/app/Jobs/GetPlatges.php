@@ -73,8 +73,8 @@ class GetPlatges implements ShouldQueue
             'slug'           => $fetched_platja->slug,
             'latitude'       => $fetched_platja->coordenades->latitud,
             'latitude_ceil'  => intval(ceil($fetched_platja->coordenades->latitud)),
-            'longitude'      => $fetched_platja->coordenades->longitut,
-            'longitude_ceil' => intval(ceil($fetched_platja->coordenades->longitut)),
+            'longitude'      => $fetched_platja->coordenades->longitud,
+            'longitude_ceil' => intval(ceil($fetched_platja->coordenades->longitud)),
             'municipi_id'    => $municipi->id,
           ]);
         }
@@ -84,8 +84,8 @@ class GetPlatges implements ShouldQueue
           $platja->slug           = $fetched_platja->slug;
           $platja->latitude       = $fetched_platja->coordenades->latitud;
           $platja->latitude_ceil  = intval(ceil($fetched_platja->coordenades->latitud));
-          $platja->longitude      = $fetched_platja->coordenades->longitut;
-          $platja->longitude_ceil = intval(ceil($fetched_platja->coordenades->longitut));
+          $platja->longitude      = $fetched_platja->coordenades->longitud;
+          $platja->longitude_ceil = intval(ceil($fetched_platja->coordenades->longitud));
           $platja->municipi_id    = $municipi->id;
 
           $platja->commit;
