@@ -47,6 +47,7 @@ class GetPlatges implements ShouldQueue
         {
           try
           {
+            Log::info("municipi ".$fetched_platja->municipi." no trobat");
             Log::info("job GetMunicipis & rerun GetPlatjes");
             dispatch(new GetMunicipis());
             dispatch(new GetPlatges());
