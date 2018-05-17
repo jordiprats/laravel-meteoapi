@@ -85,6 +85,7 @@ class GetMunicipis implements ShouldQueue
         $municipi = Municipi::create([
           'meteo_id'         => $fetched_municipi->codi,
           'nom'              => $fetched_municipi->nom,
+          'nom_strcmp'       => MunicipiController::toStrCmp($fetched_municipi->nom),
           'slug'             => $municipi_slug,
           'latitude'         => $fetched_municipi->coordenades->latitud,
           'latitude_ceil'    => intval(ceil($fetched_municipi->coordenades->latitud)),
@@ -96,6 +97,7 @@ class GetMunicipis implements ShouldQueue
       else
       {
         $municipi->nom              = $fetched_municipi->nom;
+        $municipi->nom_strcmp       = MunicipiController::toStrCmp($fetched_municipi->nom);
         $municipi->slug             = $municipi_slug;
         $municipi->latitude         = $fetched_municipi->coordenades->latitud;
         $municipi->latitude_ceil    = intval(ceil($fetched_municipi->coordenades->latitud));

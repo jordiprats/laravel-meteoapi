@@ -29,6 +29,8 @@ class CreateMunicipisTable extends Migration
         $table->increments('id');
         $table->integer('meteo_id');
         $table->string('nom');
+        $table->string('nom_strcmp');
+        $table->unique('nom_strcmp');
         $table->string('slug')->nullable();
         $table->double('latitude', 10, 6);
         $table->integer('latitude_ceil');
