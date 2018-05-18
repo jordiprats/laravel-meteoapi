@@ -9,9 +9,10 @@ class MunicipiController extends Controller
 {
   public static function toStrCmp(string $string)
   {
-    $conectors = array('i', 'a', 'de', 'del', 'dels', 'el', 'la', 'd\'', '-', 'l\'', ',');
+    $conectors = array('i', 'a', 'de', 'del', 'dels', 'les', 'el', 'la', 'd\'', '-', 'l\'', ',');
 
-    $output = preg_replace('/\b('.implode('|',$conectors).')\b/','',$string);
+    $output = strtolower($string);
+    $output = preg_replace('/\b('.implode('|',$conectors).')\b/','',$output);
     $output = trim(preg_replace('/\s+/', '', str_replace("\n", "", $output)));
     $output = str_slug($output, '');
 

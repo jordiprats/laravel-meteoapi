@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\MunicipiController;
 use App\Http\Controllers\PlatjaController;
 use App\Municipi;
 use App\Platja;
@@ -41,13 +42,13 @@ class GetPlatges implements ShouldQueue
       foreach($fetched_platges as $fetched_platja)
       {
         $platja = Platja::where(['slug' => $fetched_platja->slug])->first();
-        $municipi = Municipi::where(['nom' => $fetched_platja->municipi])->first();
+        $municipi = Municipi::where(['nom_strcmp' => MunicipiController::toStrCmp($fetched_platja->municipi)])->first();
 
         if(!$municipi)
         {
           try
           {
-            Log::info("municipi ".$fetched_platja->municipi." no trobat");
+            Log::info("municipi ".$fetched_platja->municipi."/".MunicipiController::toStrCmp($fetched_platja->municipi)." no trobat");
           }
           catch(\Exception $e)
           {
