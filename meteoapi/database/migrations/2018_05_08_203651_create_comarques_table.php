@@ -18,7 +18,6 @@ class CreateComarquesTable extends Migration
     // nom	"Pallars Jussà"
     Schema::create('comarques', function (Blueprint $table) {
       $table->increments('id');
-      $table->integer('meteo_id');
       $table->string('nom');
       $table->timestamps();
     });

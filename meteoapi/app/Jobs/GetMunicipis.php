@@ -39,8 +39,8 @@ class GetMunicipis implements ShouldQueue
 
     foreach($fetched_municipis as $fetched_municipi)
     {
-      $municipi = Municipi::where(['meteo_id' => $fetched_municipi->codi])->first();
-      $comarca = Comarca::where(['meteo_id' => $fetched_municipi->comarca->codi])->first();
+      $municipi = Municipi::where(['id' => $fetched_municipi->codi])->first();
+      $comarca = Comarca::where(['id' => $fetched_municipi->comarca->codi])->first();
 
       // stdClass Object
       // (
@@ -64,13 +64,14 @@ class GetMunicipis implements ShouldQueue
       if(!$comarca)
       {
         $comarca = Comarca::create([
-          'meteo_id' => $fetched_municipi->comarca->codi,
-          'nom'      => $fetched_municipi->comarca->nom,
+          'id'  => $fetched_municipi->comarca->codi,
+          'nom' => $fetched_municipi->comarca->nom,
         ]);
       }
       else
       {
         $comarca->nom = $fetched_municipi->comarca->nom;
+        $comarca->id  = $fetched_municipi->comarca->codi;
 
         $comarca->commit;
       }
@@ -83,19 +84,20 @@ class GetMunicipis implements ShouldQueue
       if(!$municipi)
       {
         $municipi = Municipi::create([
-          'meteo_id'         => $fetched_municipi->codi,
-          'nom'              => $fetched_municipi->nom,
-          'nom_strcmp'       => MunicipiController::toStrCmp($fetched_municipi->nom),
-          'slug'             => $municipi_slug,
-          'latitude'         => $fetched_municipi->coordenades->latitud,
-          'latitude_ceil'    => intval(ceil($fetched_municipi->coordenades->latitud)),
-          'longitude'        => $fetched_municipi->coordenades->longitud,
-          'longitude_ceil'   => intval(ceil($fetched_municipi->coordenades->longitud)),
-          'comarca_id'       => $comarca->id,
+          'id'             => $fetched_municipi->codi,
+          'nom'            => $fetched_municipi->nom,
+          'nom_strcmp'     => MunicipiController::toStrCmp($fetched_municipi->nom),
+          'slug'           => $municipi_slug,
+          'latitude'       => $fetched_municipi->coordenades->latitud,
+          'latitude_ceil'  => intval(ceil($fetched_municipi->coordenades->latitud)),
+          'longitude'      => $fetched_municipi->coordenades->longitud,
+          'longitude_ceil' => intval(ceil($fetched_municipi->coordenades->longitud)),
+          'comarca_id'     => $comarca->id,
         ]);
       }
       else
       {
+        $municipi->id               = $fetched_municipi->codi;
         $municipi->nom              = $fetched_municipi->nom;
         $municipi->nom_strcmp       = MunicipiController::toStrCmp($fetched_municipi->nom);
         $municipi->slug             = $municipi_slug;

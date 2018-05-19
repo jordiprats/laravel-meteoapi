@@ -27,7 +27,6 @@ class CreateMunicipisTable extends Migration
       // nom	"Pallars Jussà"
       Schema::create('municipis', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('meteo_id');
         $table->string('nom');
         $table->string('nom_strcmp');
         $table->unique('nom_strcmp');
