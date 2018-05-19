@@ -17,9 +17,7 @@ class CreatePrevisiosTable extends Migration
       $table->increments('id');
       $table->integer('tipus');
       $table->timestamp('data_previsio');
-      //municipi
-      //TODO
-      //platges
+      // previsió platges
       // data	"2018-05-16T00:00Z"
       // variables
       // 0
@@ -54,6 +52,7 @@ class CreatePrevisiosTable extends Migration
       // valor	0
       // 1
       //
+      //TODO: previsió municipal
       $table->double('temperatura', 16, 16)->nullable();
       $table->double('humitat_relativa', 16, 16)->nullable();
       $table->double('velocitat_vent', 16, 16)->nullable();
