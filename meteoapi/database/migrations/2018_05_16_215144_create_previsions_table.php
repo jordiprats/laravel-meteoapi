@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrevisiosTable extends Migration
+class CreatePrevisionsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePrevisiosTable extends Migration
    */
   public function up()
   {
-    Schema::create('previsios', function (Blueprint $table) {
+    Schema::create('previsions', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('tipus');
       $table->timestamp('data_previsio');
@@ -74,6 +74,6 @@ class CreatePrevisiosTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('previsios');
+    Schema::dropIfExists('previsions');
   }
 }
