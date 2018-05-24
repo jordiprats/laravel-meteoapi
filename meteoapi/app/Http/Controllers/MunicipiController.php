@@ -23,6 +23,7 @@ class MunicipiController extends Controller
   {
     $c = curl_init('http://meteo.cat/prediccio/municipal');
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
     //curl_setopt(... other options you want...)
 
     $html = curl_exec($c);
@@ -49,6 +50,7 @@ class MunicipiController extends Controller
     //TODO: caching
     $c = curl_init('http://meteo.cat/prediccio/municipal');
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
     //curl_setopt(... other options you want...)
 
     $html = curl_exec($c);
@@ -99,6 +101,7 @@ class MunicipiController extends Controller
     //TODO: caching
     $c = curl_init('http://meteo.cat/prediccio/municipal/'.$municipi_id);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
     //curl_setopt(... other options you want...)
 
     $html = curl_exec($c);
