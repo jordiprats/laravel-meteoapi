@@ -40,6 +40,7 @@ class MunicipiController extends Controller
 
     return json_decode($matches[1][0]);
   }
+
   /**
    * Display a listing of the resource.
    *
@@ -75,7 +76,7 @@ class MunicipiController extends Controller
    */
   public function create()
   {
-      //
+    //
   }
 
   /**
@@ -86,7 +87,7 @@ class MunicipiController extends Controller
    */
   public function store(Request $request)
   {
-      //
+    //
   }
 
   /**
