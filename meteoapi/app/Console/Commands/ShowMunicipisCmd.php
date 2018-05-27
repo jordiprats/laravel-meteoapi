@@ -13,14 +13,14 @@ class ShowMunicipisCmd extends Command
    *
    * @var string
    */
-  protected $signature = 'meteoapi:showmunicipis';
+  protected $signature = 'meteoapi:showmunicipis {--slug}';
 
   /**
    * The console command description.
    *
    * @var string
    */
-  protected $description = 'Command description';
+  protected $description = 'llistat de municipis';
 
   /**
    * Create a new command instance.
