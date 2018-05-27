@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use App\Municipi;
 
 class ShowMunicipisCmd extends Command
 {
@@ -37,6 +39,6 @@ class ShowMunicipisCmd extends Command
    */
   public function handle()
   {
-    //
+    print_r(Municipi::all());
   }
 }
