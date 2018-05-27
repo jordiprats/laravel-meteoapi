@@ -39,9 +39,12 @@ class ShowMunicipisCmd extends Command
    */
   public function handle()
   {
-    foreach(Municipi::all()::orderBy('nom_strcmp', 'DESC') as $municipi)
+    foreach(Municipi::orderBy('nom_strcmp', 'ASC')->get() as $municipi)
     {
-      print($municipi->nom."\n");
+      if($this->option('slug'))
+        print($municipi->slug."\n");
+      else
+        print($municipi->nom."\n");
     }
   }
 }
