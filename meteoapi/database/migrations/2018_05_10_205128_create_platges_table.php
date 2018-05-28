@@ -23,6 +23,7 @@ class CreatePlatgesTable extends Migration
         $table->increments('id');
         $table->string('nom');
         $table->string('slug')->nullable();
+        $table->unique('slug');
         $table->double('latitude', 10, 6);
         $table->integer('latitude_ceil');
         $table->index('latitude_ceil');

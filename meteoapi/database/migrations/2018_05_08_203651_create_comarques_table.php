@@ -19,6 +19,8 @@ class CreateComarquesTable extends Migration
     Schema::create('comarques', function (Blueprint $table) {
       $table->increments('id');
       $table->string('nom');
+      $table->string('slug');
+      $table->unique('slug');
       $table->timestamps();
     });
   }

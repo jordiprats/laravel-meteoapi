@@ -31,6 +31,7 @@ class CreateMunicipisTable extends Migration
         $table->string('nom_strcmp');
         $table->unique('nom_strcmp');
         $table->string('slug')->nullable();
+        $table->unique('slug');
         $table->double('latitude', 10, 6);
         $table->integer('latitude_ceil');
         $table->index('latitude_ceil');

@@ -64,14 +64,16 @@ class GetMunicipis implements ShouldQueue
       if(!$comarca)
       {
         $comarca = Comarca::create([
-          'id'  => $fetched_municipi->comarca->codi,
-          'nom' => $fetched_municipi->comarca->nom,
+          'id'   => $fetched_municipi->comarca->codi,
+          'nom'  => $fetched_municipi->comarca->nom,
+          'slug' => str_slug($fetched_municipi->comarca->nom, '-'),
         ]);
       }
       else
       {
-        $comarca->nom = $fetched_municipi->comarca->nom;
-        $comarca->id  = $fetched_municipi->comarca->codi;
+        $comarca->nom  = $fetched_municipi->comarca->nom;
+        $comarca->id   = $fetched_municipi->comarca->codi;
+        $comarca->slug = str_slug($fetched_municipi->comarca->nom, '-');
 
         $comarca->commit;
       }
