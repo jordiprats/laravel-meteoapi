@@ -29,6 +29,6 @@ class GetPrevisioPlatges implements ShouldQueue
    */
   public function handle()
   {
-    //
+    //http://meteo.cat/prediccio/platges/tossa-de-mar-de-la-mar-menuda
   }
 }
