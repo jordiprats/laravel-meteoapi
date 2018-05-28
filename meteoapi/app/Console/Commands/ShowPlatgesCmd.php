@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use App\Municipi;
+use App\Platja;
 
 class ShowPlatgesCmd extends Command
 {
