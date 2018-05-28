@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use App\Comarca;
 
-class ShowMunicipisCmd extends Command
+class ShowComarquesCmd extends Command
 {
   /**
    * The name and signature of the console command.
