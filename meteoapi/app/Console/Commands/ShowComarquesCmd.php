@@ -13,7 +13,7 @@ class ShowMunicipisCmd extends Command
    *
    * @var string
    */
-  protected $signature = 'meteoapi:showcomarques';
+  protected $signature = 'meteoapi:showcomarques {--slug}';
 
   /**
    * The console command description.
@@ -41,7 +41,10 @@ class ShowMunicipisCmd extends Command
   {
     foreach(Comarca::orderBy('nom', 'ASC')->get() as $comarca)
     {
-      print($comarca->nom."\n");
+      if($this->option('slug'))
+        print($comarca->slug."\n");
+      else
+        print($comarca->nom."\n");
     }
   }
 }
