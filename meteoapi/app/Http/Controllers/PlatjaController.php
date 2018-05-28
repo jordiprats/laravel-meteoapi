@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Platja;
 use Illuminate\Http\Request;
 
-# temporal
-use Illuminate\Support\Facades\Log;
-
 class PlatjaController extends Controller
 {
   public static function getPlatges()
