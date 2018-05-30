@@ -8,6 +8,5 @@ class Comarca extends Model
 {
   protected $table = 'comarques';
   
-  // everything is mass assignable
   protected $guarded = [];
 }
