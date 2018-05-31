@@ -18,6 +18,7 @@ class CreatePrevisionsTable extends Migration
       $table->integer('tipus')->nullable();
       $table->integer('platja_id')->nullable()->references('id')->on('platges');
       $table->string('data_previsio');
+      $table->unique(['platja_id', 'data_previsio'], 'platja_data_unique');
       // previsió platges
       // data	"2018-05-16T00:00Z"
       // variables
