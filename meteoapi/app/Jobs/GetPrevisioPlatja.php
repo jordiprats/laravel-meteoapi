@@ -69,7 +69,7 @@ class GetPrevisioPlatja implements ShouldQueue
         {
           $previsio = Previsio::create([
             'platja_id' => $platja->id,
-            'data_previsio' => $fetched_previsio->data,
+            'data_previsio' => gmdate("Y-m-d H:i:s", strtotime($fetched_previsio->data)),
             'temperatura' => floatval($variables['temperatura']),
             'humitat_relativa' => floatval($variables['humitat_relativa']),
             'velocitat_vent' => floatval($variables['velocitat_vent']),
