@@ -87,7 +87,7 @@ class GetPlatges implements ShouldQueue
           $platja->longitude_ceil = intval(ceil($fetched_platja->coordenades->longitud));
           $platja->municipi_id    = $municipi->id;
 
-          $platja->commit;
+          $platja->save();
         }
 
       }

@@ -75,7 +75,7 @@ class GetMunicipis implements ShouldQueue
         $comarca->id   = $fetched_municipi->comarca->codi;
         $comarca->slug = str_slug($fetched_municipi->comarca->nom, '-');
 
-        $comarca->commit;
+        $comarca->save();
       }
 
       if(!$fetched_municipi->slug)
@@ -109,7 +109,7 @@ class GetMunicipis implements ShouldQueue
         $municipi->longitude_ceil   = intval(ceil($fetched_municipi->coordenades->longitud));
         $municipi->comarca_id       = $comarca->id;
 
-        $municipi->commit;
+        $municipi->save();
       }
     }
   }

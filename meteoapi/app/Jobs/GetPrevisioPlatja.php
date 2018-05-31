@@ -84,7 +84,19 @@ class GetPrevisioPlatja implements ShouldQueue
         }
         else
         {
+          $previsio->
+          $previsio->temperatura = floatval($variables['temperatura']);
+          $previsio->humitat_relativa = floatval($variables['humitat_relativa']);
+          $previsio->velocitat_vent = floatval($variables['velocitat_vent']);
+          $previsio->direccio_vent = floatval($variables['direccio_vent']);
+          $previsio->estat_cel = $variables['estat_cel'];
+          $previsio->altura_ona = floatval($variables['altura_ona']);
+          $previsio->direccio_ona = floatval($variables['direccio_ona']);
+          $previsio->temperatura_aigua = floatval($variables['temperatura_aigua']);
+          $previsio->uvi_maxim = $variables['uvi_maxim'];
+          $previsio->uvi_previst = $variables['uvi_previst'];
 
+          $previsio->save();
         }
       }
     }
