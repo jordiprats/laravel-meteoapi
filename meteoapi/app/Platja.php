@@ -9,4 +9,9 @@ class Platja extends Model
   protected $table = 'platges';
 
   protected $guarded = [];
+
+  public function municipi()
+  {
+    return $this->belongsTo(Municipi::class);
+  }
 }

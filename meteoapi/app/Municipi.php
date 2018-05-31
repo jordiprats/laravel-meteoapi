@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Municipi extends Model
 {
   protected $guarded = [];
+
+  public function platjes()
+  {
+    return $this->hasMany(Platja::class);
+  }
 }
