@@ -54,14 +54,14 @@ class CreatePrevisionsTable extends Migration
       // 1
       //
       //TODO: previsió municipal
-      $table->double('temperatura', 16, 16)->nullable();
-      $table->double('humitat_relativa', 16, 16)->nullable();
-      $table->double('velocitat_vent', 16, 16)->nullable();
-      $table->double('direccio_vent', 16, 16)->nullable();
+      $table->decimal('temperatura', 5, 2)->nullable();
+      $table->decimal('humitat_relativa', 5, 2)->nullable();
+      $table->decimal('velocitat_vent', 5, 2)->nullable();
+      $table->decimal('direccio_vent', 5, 2)->nullable();
       $table->integer('estat_cel')->nullable();
-      $table->double('altura_ona', 16, 16)->nullable();
-      $table->double('direccio_ona', 16, 16)->nullable();
-      $table->double('temperatura_aigua', 16, 16)->nullable();
+      $table->decimal('altura_ona', 5, 2)->nullable();
+      $table->decimal('direccio_ona', 5, 2)->nullable();
+      $table->decimal('temperatura_aigua', 5, 2)->nullable();
       $table->integer('uvi_maxim')->nullable();
       $table->integer('uvi_previst')->nullable();
       $table->timestamps();
