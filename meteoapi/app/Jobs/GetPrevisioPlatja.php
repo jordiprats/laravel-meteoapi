@@ -61,7 +61,7 @@ class GetPrevisioPlatja implements ShouldQueue
       {
         $variables = GetPrevisioPlatja::variablesPrevisio2array($fetched_previsio->variables);
 
-        print_r($variables);
+        //print_r($variables);
 
         $previsio = Previsio::where(['platja_id' => $platja->id, 'data_previsio' => $fetched_previsio->data])->first();
 
@@ -84,7 +84,6 @@ class GetPrevisioPlatja implements ShouldQueue
         }
         else
         {
-          $previsio->
           $previsio->temperatura = floatval($variables['temperatura']);
           $previsio->humitat_relativa = floatval($variables['humitat_relativa']);
           $previsio->velocitat_vent = floatval($variables['velocitat_vent']);
