@@ -12,6 +12,6 @@ class Previsio extends Model
 
   public function platja()
   {
-    return $this->belongsTo(Platja::class);
+    return $this->belongsTo(Platja::class,'platja_id');
   }
 }

@@ -25,8 +25,13 @@ class PrevisioController extends Controller
     curl_close($c);
 
     // preg_match('/dades: (.*),/', $html, $matches, PREG_OFFSET_CAPTURE);
-    preg_match('/dades: (.*),/', $html, $matches, PREG_OFFSET_CAPTURE);
+    preg_match('/\bdades: (.*),/', $html, $matches, PREG_OFFSET_CAPTURE);
 
-    return json_decode($matches[1][0]);
+    if($matches[1][0])
+    {
+      return json_decode($matches[1][0]);
+    }
+    else
+      return null;
   }
 }

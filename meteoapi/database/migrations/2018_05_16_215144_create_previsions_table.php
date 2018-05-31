@@ -15,8 +15,9 @@ class CreatePrevisionsTable extends Migration
   {
     Schema::create('previsions', function (Blueprint $table) {
       $table->increments('id');
-      $table->integer('tipus');
-      $table->timestamp('data_previsio');
+      $table->integer('tipus')->nullable();
+      $table->integer('platja_id')->nullable()->references('id')->on('platges');
+      $table->string('data_previsio');
       // previsió platges
       // data	"2018-05-16T00:00Z"
       // variables
