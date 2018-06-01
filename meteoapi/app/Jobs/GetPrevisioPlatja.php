@@ -68,33 +68,33 @@ class GetPrevisioPlatja implements ShouldQueue
         if(!$previsio)
         {
           $previsio = Previsio::create([
-            'platja_id' => $platja->id,
-            'data_previsio' => new \DateTime($fetched_previsio->data),
-            'temperatura' => floatval($variables['temperatura']),
-            'humitat_relativa' => floatval($variables['humitat_relativa']),
-            'velocitat_vent' => floatval($variables['velocitat_vent']),
-            'direccio_vent' => floatval($variables['direccio_vent']),
-            'estat_cel' => $variables['estat_cel'],
-            'altura_ona' => floatval($variables['altura_ona']),
-            'direccio_ona' => floatval($variables['direccio_ona']),
+            'platja_id'         => $platja->id,
+            'data_previsio'     => new \DateTime($fetched_previsio->data),
+            'temperatura'       => floatval($variables['temperatura']),
+            'humitat_relativa'  => floatval($variables['humitat_relativa']),
+            'velocitat_vent'    => floatval($variables['velocitat_vent']),
+            'direccio_vent'     => floatval($variables['direccio_vent']),
+            'estat_cel'         => $variables['estat_cel'],
+            'altura_ona'        => floatval($variables['altura_ona']),
+            'direccio_ona'      => floatval($variables['direccio_ona']),
             'temperatura_aigua' => floatval($variables['temperatura_aigua']),
-            'uvi_maxim' => $variables['uvi_maxim'],
-            'uvi_previst' => $variables['uvi_previst'],
+            'uvi_maxim'         => $variables['uvi_maxim'],
+            'uvi_previst'       => $variables['uvi_previst'],
           ]);
         }
         else
         {
-          $previsio->data_previsio = new \DateTime($fetched_previsio->data);
-          $previsio->temperatura = floatval($variables['temperatura']);
-          $previsio->humitat_relativa = floatval($variables['humitat_relativa']);
-          $previsio->velocitat_vent = floatval($variables['velocitat_vent']);
-          $previsio->direccio_vent = floatval($variables['direccio_vent']);
-          $previsio->estat_cel = $variables['estat_cel'];
-          $previsio->altura_ona = floatval($variables['altura_ona']);
-          $previsio->direccio_ona = floatval($variables['direccio_ona']);
+          $previsio->data_previsio     = new \DateTime($fetched_previsio->data);
+          $previsio->temperatura       = floatval($variables['temperatura']);
+          $previsio->humitat_relativa  = floatval($variables['humitat_relativa']);
+          $previsio->velocitat_vent    = floatval($variables['velocitat_vent']);
+          $previsio->direccio_vent     = floatval($variables['direccio_vent']);
+          $previsio->estat_cel         = $variables['estat_cel'];
+          $previsio->altura_ona        = floatval($variables['altura_ona']);
+          $previsio->direccio_ona      = floatval($variables['direccio_ona']);
           $previsio->temperatura_aigua = floatval($variables['temperatura_aigua']);
-          $previsio->uvi_maxim = $variables['uvi_maxim'];
-          $previsio->uvi_previst = $variables['uvi_previst'];
+          $previsio->uvi_maxim         = $variables['uvi_maxim'];
+          $previsio->uvi_previst       = $variables['uvi_previst'];
 
           $previsio->save();
         }
