@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\GetPrevisioPlatja;
 use App\Previsio;
 use App\Platja;
 
