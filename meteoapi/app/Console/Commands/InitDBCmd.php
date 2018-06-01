@@ -43,29 +43,11 @@ class InitDBCmd extends Command
   {
     if(Municipi::count()==0)
     {
-      try
-      {
-        Log::info("scheduled job GetMunicipis");
-        dispatch(new GetMunicipis());
+      $this->call('meteoapi:getmunicipis');
 
-        if(Platja::count()==0)
-        {
-          try
-          {
-            Log::info("scheduled job GetPlatges");
-            dispatch(new GetPlatges());
-          }
-          catch(\Exception $e)
-          {
-            Log::info("-_(._.)_-");
-            Log::info($e);
-          }
-        }
-      }
-      catch(\Exception $e)
+      if(Platja::count()==0)
       {
-        Log::info("-_(._.)_-");
-        Log::info($e);
+        $this->call('meteoapi:getplatges');
       }
     }
   }
