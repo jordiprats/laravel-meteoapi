@@ -101,6 +101,6 @@ class GetPrevisioPlatja implements ShouldQueue
       }
     }
     else
-      Log::info("NOT FOUND: ".$this->platja_slug);
+      Log::info("platja NOT FOUND: ".$this->platja_slug);
   }
 }
