@@ -15,22 +15,12 @@ class CreatePrevisionsTable extends Migration
   {
     Schema::create('previsions', function (Blueprint $table) {
       $table->increments('id');
-      $table->integer('tipus')->nullable();
+      $table->integer('tipus');
       $table->integer('platja_id')->nullable()->references('id')->on('platges');
       $table->timestamp('data_previsio');
       $table->unique(['platja_id', 'data_previsio'], 'platja_data_unique');
       //
-      // previsió municipal
-      // 'tmax': [24, 23, 25, 26, 26, 26],
-      // 'tmin': [16, 16, 17, 18, 19, 19],
-      // 'pprec': [66, 64, 28, 31, 30, 28],
-      // 'estatcel':
-      $table->integer('temperatura_max')->nullable();
-      $table->integer('temperatura_min')->nullable();
-      $table->integer('probabilitat_precipitacio')->nullable();
-      $table->integer('estat_cel')->nullable();
-      //
-      // previsió platges
+      // previsió platges - tipus 1
       // data	"2018-05-16T00:00Z"
       // variables
       // 0
@@ -76,6 +66,16 @@ class CreatePrevisionsTable extends Migration
       $table->integer('uvi_maxim')->nullable();
       $table->integer('uvi_previst')->nullable();
       $table->timestamps();
+      //
+      // previsió municipal - tipus 2
+      // 'tmax': [24, 23, 25, 26, 26, 26],
+      // 'tmin': [16, 16, 17, 18, 19, 19],
+      // 'pprec': [66, 64, 28, 31, 30, 28],
+      // 'estatcel':
+      $table->integer('temperatura_max')->nullable();
+      $table->integer('temperatura_min')->nullable();
+      $table->integer('probabilitat_precipitacio')->nullable();
+      $table->integer('estat_cel')->nullable();
     });
   }
 
