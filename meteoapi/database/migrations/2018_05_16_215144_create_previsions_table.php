@@ -75,7 +75,7 @@ class CreatePrevisionsTable extends Migration
       $table->integer('temperatura_max')->nullable();
       $table->integer('temperatura_min')->nullable();
       $table->integer('probabilitat_precipitacio')->nullable();
-      $table->integer('estat_cel')->nullable();
+      //estat_cel compartit amb tipus 1
     });
   }
 
