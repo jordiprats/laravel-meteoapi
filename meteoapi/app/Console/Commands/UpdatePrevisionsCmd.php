@@ -44,7 +44,7 @@ class UpdatePrevisionsCmd extends Command
     foreach(Previsio::distinct()->get(['platja_id']) as $platja_amb_previsio)
     {
       //
-      $platja=Platja::where(['id'=>$platja_amb_previsio->platja_id])->first();
+      $platja=Platja::where(['id' => $platja_amb_previsio->platja_id])->first();
 
       if($platja)
       {
