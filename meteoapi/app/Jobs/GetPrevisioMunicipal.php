@@ -40,7 +40,7 @@ class GetPrevisioMunicipal implements ShouldQueue
 
     if($municipi)
     {
-      PrevisioController::getPrevisioMunicipal($municipi->id);
+      $previsions = PrevisioController::getPrevisioMunicipal($municipi->id);
     }
     else
       Log::info("municipi NOT FOUND: ".$this->municipi_slug);
