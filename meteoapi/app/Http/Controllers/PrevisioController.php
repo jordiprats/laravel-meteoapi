@@ -28,16 +28,24 @@ class PrevisioController extends Controller
     curl_close($c);
 
     // preg_match('/dades: (.*),/', $html, $matches, PREG_OFFSET_CAPTURE);
-    preg_match('/\bMeteocat.graficaMunicipal.renderitzarGrafica\(([^\)]*|url\([^\)]*\)\);/sm', $html, $matches, PREG_OFFSET_CAPTURE);
+    preg_match('/Meteocat.graficaMunicipal.renderitzarGrafica\((([^\)]*|\)*)*)\);/m', $html, $matches, PREG_OFFSET_CAPTURE);
 
-    print_r($matches);
+    // print_r($matches);
 
-    // if($matches[1][0])
-    // {
-    //   return json_decode($matches[1][0]);
-    // }
-    // else
-    //   return null;
+    if($matches[1][0])
+    {
+      $previsio_json=preg_replace('/\/\/[a-z]*/', '', $matches[1][0]);
+      $previsio_json=preg_replace('/\'/', '"', $previsio_json);
+      $previsio_json=preg_replace('/\\by\\b/', '"y"', $previsio_json);
+      $previsio_json=preg_replace('/\\bmarker\\b/', '"marker"', $previsio_json);
+      $previsio_json=preg_replace('/\\bsymbol\\b/', '"symbol"', $previsio_json);
+      $previsio_json='['.$previsio_json.']';
+      print_r($previsio_json);
+      print_r(json_decode($previsio_json));
+      return json_decode($previsio_json);
+    }
+    else
+      return null;
   }
 
   public static function getPrevisioPlatja($platja_slug)
