@@ -46,6 +46,18 @@ class GetPrevisioMunicipal implements ShouldQueue
       foreach ($previsions as $fetched_previsio)
       {
         // TODO: data_previsio
+        // [1] => stdClass Object
+        //     (
+        //         [dies] => Array
+        //             (
+        //                 [0] => DS. 9
+        //                 [1] => DG. 10
+        //                 [2] => DL. 11
+        //                 [3] => DT. 12
+        //                 [4] => DC. 13
+        //                 [5] => DJ. 14
+        //             )
+
         $previsio = Previsio::where(['municipi_id' => $municipi->id, 'data_previsio' => new \DateTime($fetched_previsio->data)])->first();
       }
     }
