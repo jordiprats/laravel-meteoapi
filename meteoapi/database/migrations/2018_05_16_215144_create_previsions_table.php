@@ -72,6 +72,7 @@ class CreatePrevisionsTable extends Migration
       // 'tmin': [16, 16, 17, 18, 19, 19],
       // 'pprec': [66, 64, 28, 31, 30, 28],
       // 'estatcel':
+      $table->integer('municipi_id')->nullable()->references('id')->on('municipis');
       $table->integer('temperatura_max')->nullable();
       $table->integer('temperatura_min')->nullable();
       $table->integer('probabilitat_precipitacio')->nullable();
