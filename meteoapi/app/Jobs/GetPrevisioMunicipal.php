@@ -57,6 +57,9 @@ class GetPrevisioMunicipal implements ShouldQueue
         //                 [4] => DC. 13
         //                 [5] => DJ. 14
         //             )
+        // 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'
+        // DL / mon, DT / tue, DC / wed, DJ / thu, DV / fri, DS / sat
+        // echo gmdate('F j, Y', strtotime('next fri'));
 
         $previsio = Previsio::where(['municipi_id' => $municipi->id, 'data_previsio' => new \DateTime($fetched_previsio->data)])->first();
       }
