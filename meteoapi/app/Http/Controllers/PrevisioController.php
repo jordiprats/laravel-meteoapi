@@ -40,8 +40,6 @@ class PrevisioController extends Controller
       $previsio_json=preg_replace('/\\bmarker\\b/', '"marker"', $previsio_json);
       $previsio_json=preg_replace('/\\bsymbol\\b/', '"symbol"', $previsio_json);
       $previsio_json='['.$previsio_json.']';
-      print_r($previsio_json);
-      print_r(json_decode($previsio_json));
       return json_decode($previsio_json);
     }
     else
