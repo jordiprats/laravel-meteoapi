@@ -60,7 +60,7 @@ class GetPrevisioMunicipal implements ShouldQueue
         // 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'
         // DL / mon, DT / tue, DC / wed, DJ / thu, DV / fri, DS / sat
         // echo gmdate('F j, Y', strtotime('next fri'));
-        var_dump($fetched_previsio);
+        var_dump($fetched_previsio->dies);
 
         //new \DateTime(
 
