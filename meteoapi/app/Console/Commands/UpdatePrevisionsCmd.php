@@ -62,5 +62,25 @@ class UpdatePrevisionsCmd extends Command
       }
     }
 
+    // update previsions municipals
+    foreach(Previsio::distinct()->get(['municipi_id']) as $municipi_amb_previsio)
+    {
+      $municipi=Municipi::where(['id' => $municipi_amb_previsio->municipi_id])->first();
+
+      if($municipi)
+      {
+        try
+        {
+          Log::info("scheduled job GetPrevisioMunicipal: ".$municipi->slug);
+          dispatch(new GetPrevisioMunicipal($municipi->slug));
+        }
+        catch(\Exception $e)
+        {
+          Log::info("-_(._.)_-");
+          Log::info($e);
+        }
+      }
+    }
+
   }
 }
