@@ -42,24 +42,35 @@ class GetPrevisioMunicipal implements ShouldQueue
     {
       $previsions = PrevisioController::getPrevisioMunicipal($municipi->id);
 
+      // TODO: data_previsio
+      // [1] => stdClass Object
+      //     (
+      //         [dies] => Array
+      //             (
+      //                 [0] => DS. 9
+      //                 [1] => DG. 10
+      //                 [2] => DL. 11
+      //                 [3] => DT. 12
+      //                 [4] => DC. 13
+      //                 [5] => DJ. 14
+      //             )
+      // 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'
+      // DL / mon, DT / tue, DC / wed, DJ / thu, DV / fri, DS / sat, DG / sun
+      $traductor_dies= [
+        'DL' => 'mon',
+        'DT' => 'tue',
+        'DC' => 'wed',
+        'DJ' => 'thu',
+        'DV' => 'fri',
+        'DS' => 'sat',
+        'DG' => 'sun',
+      ];
+
       // Log::info(print_r($previsions,true));
       foreach ($previsions as $fetched_previsio)
       {
-        // TODO: data_previsio
-        // [1] => stdClass Object
-        //     (
-        //         [dies] => Array
-        //             (
-        //                 [0] => DS. 9
-        //                 [1] => DG. 10
-        //                 [2] => DL. 11
-        //                 [3] => DT. 12
-        //                 [4] => DC. 13
-        //                 [5] => DJ. 14
-        //             )
-        // 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat'
-        // DL / mon, DT / tue, DC / wed, DJ / thu, DV / fri, DS / sat
         // echo gmdate('F j, Y', strtotime('next fri'));
+
         var_dump($fetched_previsio->dies);
 
         //new \DateTime(
