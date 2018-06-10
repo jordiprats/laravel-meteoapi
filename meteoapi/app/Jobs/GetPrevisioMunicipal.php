@@ -66,12 +66,12 @@ class GetPrevisioMunicipal implements ShouldQueue
         'DG' => 'sun',
       ];
 
-      // Log::info(print_r($previsions,true));
+      Log::info(print_r($previsions));
       foreach ($previsions as $fetched_previsio)
       {
         // echo gmdate('F j, Y', strtotime('next fri'));
 
-        var_dump($fetched_previsio->dies);
+        //var_dump($fetched_previsio->dies);
 
         //new \DateTime(
 
