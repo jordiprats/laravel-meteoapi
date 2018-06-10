@@ -72,6 +72,10 @@ class GetPrevisioMunicipal implements ShouldQueue
 
         $previsio = Previsio::where(['municipi_id' => $municipi->id, 'data_previsio' => $fetched_dia, 'tipus' => 2])->first();
 
+        preg_match('/\/([0-9]+).png\)$/m', $fetched_previsio->estatcel[$i]->marker->symbol, $matches, PREG_OFFSET_CAPTURE);
+
+        print_r($matches);
+
         if(!$previsio)
         {
           $previsio = Previsio::create([
@@ -81,10 +85,20 @@ class GetPrevisioMunicipal implements ShouldQueue
             'temperatura_max' => $fetched_previsio->tmax[$i],
             'temperatura_min' => $fetched_previsio->tmin[$i],
             'probabilitat_precipitacio' => $fetched_previsio->pprec[$i],
+            'estat_cel' => $matches[1][0],
           ]);
+
         }
         else
         {
+          $previsio->municipi_id = $municipi->id;
+          $previsio->tipus             = 2;
+          $previsio->data_previsio     = $fetched_dia;
+          $previsio->temperatura_max = $fetched_previsio->tmax[$i];
+          $previsio->temperatura_min = $fetched_previsio->tmin[$i];
+          $previsio->probabilitat_precipitacio = $fetched_previsio->pprec[$i];
+          $previsio->estat_cel = $matches[1][0];
+
           $previsio->save();
         }
       }
