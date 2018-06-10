@@ -66,7 +66,28 @@ class GetPrevisioMunicipal implements ShouldQueue
         'DG' => 'sun',
       ];
 
-      var_dump($fetched_previsio->dies);
+      foreach($fetched_previsio->dies as $i => $dia)
+      {
+        $fetched_dia=new \DateTime("next ".$traductor_dies[$dia[0].$dia[1]]);
+
+        $previsio = Previsio::where(['municipi_id' => $municipi->id, 'data_previsio' => $fetched_dia, 'tipus' => 2])->first();
+
+        if(!$previsio)
+        {
+          $previsio = Previsio::create([
+            'municipi_id' => $municipi->id,
+            'tipus'             => 2,
+            'data_previsio'     => $fetched_dia,
+            'temperatura_max' => $fetched_previsio->tmax[$i],
+            'temperatura_min' => $fetched_previsio->tmin[$i],
+            'probabilitat_precipitacio' => $fetched_previsio->pprec[$i],
+          ]);
+        }
+        else
+        {
+          $previsio->save();
+        }
+      }
     }
     else
       Log::info("municipi NOT FOUND: ".$this->municipi_slug);

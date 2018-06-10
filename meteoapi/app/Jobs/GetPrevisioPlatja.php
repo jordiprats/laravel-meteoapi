@@ -63,7 +63,7 @@ class GetPrevisioPlatja implements ShouldQueue
 
         //print_r($variables);
 
-        $previsio = Previsio::where(['platja_id' => $platja->id, 'data_previsio' => new \DateTime($fetched_previsio->data)])->first();
+        $previsio = Previsio::where(['platja_id' => $platja->id, 'data_previsio' => new \DateTime($fetched_previsio->data), 'tipus' => 1])->first();
 
         if(!$previsio)
         {
