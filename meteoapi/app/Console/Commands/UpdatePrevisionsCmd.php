@@ -41,6 +41,7 @@ class UpdatePrevisionsCmd extends Command
    */
   public function handle()
   {
+    // update previsions de platjes
     foreach(Previsio::distinct()->get(['platja_id']) as $platja_amb_previsio)
     {
       //
