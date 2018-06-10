@@ -74,8 +74,6 @@ class GetPrevisioMunicipal implements ShouldQueue
 
         preg_match('/\/([0-9]+).png\)$/m', $fetched_previsio->estatcel[$i]->marker->symbol, $matches, PREG_OFFSET_CAPTURE);
 
-        print_r($matches);
-
         if(!$previsio)
         {
           $previsio = Previsio::create([
