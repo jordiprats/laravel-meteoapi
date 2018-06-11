@@ -17,6 +17,7 @@ class MunicipiResource extends JsonResource
     return [
       'id' => $this->id,
       'nom' => $this->nom,
+      'slug' => $this->slug,
     ];
   }
 }
