@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Municipi;
 use Illuminate\Http\Request;
+use App\Http\Resources\MunicipisResource;
+use App\Municipi;
 
 class MunicipiController extends Controller
 {
@@ -48,7 +49,7 @@ class MunicipiController extends Controller
    */
   public function index()
   {
-    return [ 'municipis' => 'TODO' ];
+    return new MunicipisResource(Municipi::all());
   }
 
   /**
