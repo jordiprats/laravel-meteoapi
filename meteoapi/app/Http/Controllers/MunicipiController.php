@@ -79,7 +79,7 @@ class MunicipiController extends Controller
    * @param  \App\Municipi  $municipi
    * @return \Illuminate\Http\Response
    */
-  public function show($municipi_id)
+  public function show($municipi_slug)
   {
     return [ 'prediccio' => 'TODO' ];
   }
