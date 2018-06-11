@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\GetPrevisioPlatja;
+use App\Jobs\GetPrevisioMunicipal;
 use App\Previsio;
 use App\Platja;
+use App\Municipi;
 
 class UpdatePrevisionsCmd extends Command
 {
