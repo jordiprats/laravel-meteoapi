@@ -48,25 +48,7 @@ class MunicipiController extends Controller
    */
   public function index()
   {
-    //TODO: caching
-    $c = curl_init('http://meteo.cat/prediccio/municipal');
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($c, CURLOPT_USERAGENT,'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0');
-    //curl_setopt(... other options you want...)
-
-    $html = curl_exec($c);
-
-    if (curl_error($c))
-        die(curl_error($c));
-
-    // Get the status code
-    $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-
-    curl_close($c);
-
-    preg_match('/Meteocat.cercadorMunicipi\(([^\)]*)\)/', $html, $matches, PREG_OFFSET_CAPTURE);
-
-    return [ 'municipis' => json_decode($matches[1][0]) ];
+    return [ 'municipis' => 'TODO' ];
   }
 
   /**
@@ -98,23 +80,6 @@ class MunicipiController extends Controller
    */
   public function show($municipi_id)
   {
-    //http://meteo.cat/prediccio/municipal/172023
-    //TODO: caching
-    $c = curl_init('http://meteo.cat/prediccio/municipal/'.$municipi_id);
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($c, CURLOPT_USERAGENT,'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0');
-    //curl_setopt(... other options you want...)
-
-    $html = curl_exec($c);
-
-    if (curl_error($c))
-        die(curl_error($c));
-
-    // Get the status code
-    $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-
-    curl_close($c);
-
     return [ 'prediccio' => 'TODO' ];
   }
 
