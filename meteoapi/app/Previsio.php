@@ -14,4 +14,9 @@ class Previsio extends Model
   {
     return $this->belongsTo(Platja::class,'platja_id');
   }
+
+  public function municipi()
+  {
+    return $this->belongsTo(Municipi::class,'municipi_id');
+  }
 }
