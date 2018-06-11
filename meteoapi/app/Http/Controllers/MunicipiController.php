@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\MunicipisResource;
+use App\Http\Resources\PrevisionsResource;
 use App\Municipi;
 
 class MunicipiController extends Controller
@@ -81,7 +82,8 @@ class MunicipiController extends Controller
    */
   public function show($municipi_slug)
   {
-    return [ 'prediccio' => 'TODO' ];
+    $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
+    return new PrevisionsResource($municipi->previsions);
   }
 
   /**

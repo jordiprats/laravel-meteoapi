@@ -14,4 +14,9 @@ class Platja extends Model
   {
     return $this->belongsTo(Municipi::class);
   }
+
+  public function previsions()
+  {
+    return $this->hasMany(Previsio::class);
+  }
 }

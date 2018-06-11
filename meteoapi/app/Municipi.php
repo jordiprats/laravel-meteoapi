@@ -12,4 +12,9 @@ class Municipi extends Model
   {
     return $this->hasMany(Platja::class);
   }
+
+  public function previsions()
+  {
+    return $this->hasMany(Previsio::class);
+  }
 }
