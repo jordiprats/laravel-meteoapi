@@ -15,6 +15,6 @@ class Municipi extends Model
 
   public function previsions()
   {
-    return $this->hasMany(Previsio::class)->where('tipus', '=', Previsio::PREVISIO_MUNICIPAL);
+    return $this->hasMany(Previsio::class)->where('tipus', '=', Previsio::PREVISIO_MUNICIPAL)->latest('data_previsio')->take(7);
   }
 }
