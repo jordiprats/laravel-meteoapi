@@ -20,6 +20,16 @@ class PrevisioResource extends JsonResource
       case Previsio::PREVISIO_PLATJES:
         return [
           'data_previsio' => $this->data_previsio,
+          'temperatura' => $this->temperatura,
+          'humitat_relativa' => $this->humitat_relativa,
+          'velocitat_vent' => $this->velocitat_vent,
+          'direccio_vent' => $this->direccio_vent,
+          'altura_ona' => $this->altura_ona,
+          'direccio_ona' => $this->direccio_ona,
+          'temperatura_aigua' => $this->temperatura_aigua,
+          'uvi_maxim' => $this->uvi_maxim,
+          'uvi_previst' => $this->uvi_previst,
+          'estat_cel' => $this->estat_cel,
         ];
       case Previsio::PREVISIO_MUNICIPAL:
         return [
