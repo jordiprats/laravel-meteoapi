@@ -69,7 +69,7 @@ class GetPrevisioPlatja implements ShouldQueue
         {
           $previsio = Previsio::create([
             'platja_id'         => $platja->id,
-            'tipus'             => 1,
+            'tipus'             => Previsio::PREVISIO_PLATJES,
             'data_previsio'     => new \DateTime($fetched_previsio->data),
             'temperatura'       => floatval($variables['temperatura']),
             'humitat_relativa'  => floatval($variables['humitat_relativa']),
@@ -85,7 +85,7 @@ class GetPrevisioPlatja implements ShouldQueue
         }
         else
         {
-          $previsio->tipus             = 1;
+          $previsio->tipus             = Previsio::PREVISIO_PLATJES;
           $previsio->data_previsio     = new \DateTime($fetched_previsio->data);
           $previsio->temperatura       = floatval($variables['temperatura']);
           $previsio->humitat_relativa  = floatval($variables['humitat_relativa']);

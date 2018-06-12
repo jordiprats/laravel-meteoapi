@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Previsio;
 
 class PrevisioResource extends JsonResource
 {
@@ -14,8 +15,21 @@ class PrevisioResource extends JsonResource
    */
   public function toArray($request)
   {
-    return [
-      'data_previsio' => $this->data_previsio,
-    ];
+    switch ($this->tipus)
+    {
+      case Previsio::PREVISIO_PLATJES:
+        return [
+          'data_previsio' => $this->data_previsio,
+        ];
+      case Previsio::PREVISIO_MUNICIPAL:
+        return [
+          'data_previsio' => $this->data_previsio,
+          'temperatura_max' => $this->temperatura_max,
+          'temperatura_min' => $this->temperatura_min,
+          'probabilitat_precipitacio' => $this->probabilitat_precipitacio,
+          'estat_cel' => $this->estat_cel,
+        ];
+    }
+
   }
 }

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Previsio extends Model
 {
-  protected $table = 'previsions';
+  public const PREVISIO_PLATJES=1;
+  public const PREVISIO_MUNICIPAL=2;
 
+  protected $table = 'previsions';
   protected $guarded = [];
 
   public function platja()

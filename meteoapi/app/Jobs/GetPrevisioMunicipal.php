@@ -77,25 +77,25 @@ class GetPrevisioMunicipal implements ShouldQueue
         if(!$previsio)
         {
           $previsio = Previsio::create([
-            'municipi_id' => $municipi->id,
-            'tipus'             => 2,
-            'data_previsio'     => $fetched_dia,
-            'temperatura_max' => $fetched_previsio->tmax[$i],
-            'temperatura_min' => $fetched_previsio->tmin[$i],
+            'municipi_id'               => $municipi->id,
+            'tipus'                     => Previsio::PREVISIO_MUNICIPAL,
+            'data_previsio'             => $fetched_dia,
+            'temperatura_max'           => $fetched_previsio->tmax[$i],
+            'temperatura_min'           => $fetched_previsio->tmin[$i],
             'probabilitat_precipitacio' => $fetched_previsio->pprec[$i],
-            'estat_cel' => $matches[1][0],
+            'estat_cel'                 => $matches[1][0],
           ]);
 
         }
         else
         {
-          $previsio->municipi_id = $municipi->id;
-          $previsio->tipus             = 2;
-          $previsio->data_previsio     = $fetched_dia;
-          $previsio->temperatura_max = $fetched_previsio->tmax[$i];
-          $previsio->temperatura_min = $fetched_previsio->tmin[$i];
+          $previsio->municipi_id               = $municipi->id;
+          $previsio->tipus                     = Previsio::PREVISIO_MUNICIPAL;
+          $previsio->data_previsio             = $fetched_dia;
+          $previsio->temperatura_max           = $fetched_previsio->tmax[$i];
+          $previsio->temperatura_min           = $fetched_previsio->tmin[$i];
           $previsio->probabilitat_precipitacio = $fetched_previsio->pprec[$i];
-          $previsio->estat_cel = $matches[1][0];
+          $previsio->estat_cel                 = $matches[1][0];
 
           $previsio->save();
         }
