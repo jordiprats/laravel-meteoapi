@@ -21,3 +21,6 @@ Route::get('/platges/{platja_slug}', 'PlatjaController@show')->name('platges.sho
 
 Route::get('/municipis', 'MunicipiController@index')->name('municipis.list');
 Route::get('/municipis/{municipi_slug}', 'MunicipiController@show')->name('municipis.show');
+
+Route::get('/comarques', 'ComarcaController@index')->name('comarques.list');
+Route::get('/comarques/{comarca_slug}', 'ComarcaController@show')->name('comarca.show');
