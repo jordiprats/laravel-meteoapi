@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    meteoapi - República de Catalunya
                 </div>
 
                 <div class="links">
