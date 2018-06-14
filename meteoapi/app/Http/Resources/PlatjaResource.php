@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MunicipiResource extends JsonResource
+class PlatjaResource extends JsonResource
 {
   /**
    * Transform the resource into an array.
@@ -17,9 +17,10 @@ class MunicipiResource extends JsonResource
     return [
       'nom' => $this->nom,
       'slug' => $this->slug,
-      'comarca' => $this->comarca->nom,
-      'comarca_slug' => $this->comarca->slug,
-      'platges' => PlatjaResource::collection($this->platjes),
+      'latitude' => $this->latitude,
+      'longitude' => $this->longitude,
+      'municipi' => $this->municipi->nom,
+      'municipi_slug' => $this->municipi->slug,
     ];
   }
 }

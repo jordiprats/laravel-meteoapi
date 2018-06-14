@@ -8,6 +8,11 @@ class Municipi extends Model
 {
   protected $guarded = [];
 
+  public function comarca()
+  {
+    return $this->belongsTo(Comarca::class);
+  }
+
   public function platjes()
   {
     return $this->hasMany(Platja::class);
