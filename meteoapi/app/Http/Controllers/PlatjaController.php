@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Platja;
 use Illuminate\Http\Request;
+use App\Http\Resources\PlatjaResource;
 
 class PlatjaController extends Controller
 {
@@ -66,9 +67,19 @@ class PlatjaController extends Controller
    * @param  \App\Platja  $platja
    * @return \Illuminate\Http\Response
    */
-  public function show($platja_slug)
+  public function show($municipi_slug, $platja_slug)
   {
-    return [ 'prediccio' => 'TODO' ];
+    $platja=Platja::where(['slug'=>$platja_slug])->first();
+
+    if($platja)
+    {
+      if($platja->municipi->slug!=$municipi_slug)
+        return NULL;
+      else
+        return new PlatjaResource($platja);
+    }
+    else
+      return NULL;
   }
 
   /**

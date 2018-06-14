@@ -17,11 +17,11 @@ Route::get('/', function () {
 
 
 Route::get('/platges', 'PlatjaController@index')->name('platges.list');
-Route::get('/platges/{platja_slug}', 'PlatjaController@show')->name('platges.show');
 
 Route::get('/municipis', 'MunicipiController@index')->name('municipis.list');
-Route::get('/municipis/previsio/{municipi_slug}', 'MunicipiController@previsio')->name('municipis.previsio');
-Route::get('/municipis/platges/{municipi_slug}', 'MunicipiController@platges')->name('municipis.platges');
+Route::get('/municipis/{municipi_slug}/previsio', 'MunicipiController@previsio')->name('municipis.previsio');
+Route::get('/municipis/{municipi_slug}/platges', 'MunicipiController@platges')->name('municipis.platges');
+Route::get('/municipis/{municipi_slug}/platges/{platja_slug}', 'PlatjaController@show')->name('platges.show');
 
 Route::get('/comarques', 'ComarcaController@index')->name('comarques.list');
 Route::get('/comarques/{comarca_slug}', 'ComarcaController@show')->name('comarca.show');
