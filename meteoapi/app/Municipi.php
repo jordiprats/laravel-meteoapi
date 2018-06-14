@@ -13,7 +13,7 @@ class Municipi extends Model
     return $this->belongsTo(Comarca::class);
   }
 
-  public function platjes()
+  public function platges()
   {
     return $this->hasMany(Platja::class);
   }
