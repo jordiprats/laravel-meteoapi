@@ -80,7 +80,7 @@ class MunicipiController extends Controller
    * @param  \App\Municipi  $municipi
    * @return \Illuminate\Http\Response
    */
-  public function show($municipi_slug)
+  public function previsio($municipi_slug)
   {
     $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
     return new PrevisionsResource($municipi->previsions);
