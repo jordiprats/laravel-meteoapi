@@ -17,6 +17,7 @@ class Platja extends Model
 
   public function previsions()
   {
-    return $this->hasMany(Previsio::class)->where('tipus', '=', Previsio::PREVISIO_PLATJES)->latest('data_previsio')->take(2);
+    return $this->hasMany(Previsio::class)->where('tipus', '=', Previsio::PREVISIO_PLATJES)->latest('data_previsio')->take(48);
   }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Platja;
 use Illuminate\Http\Request;
 use App\Http\Resources\PlatjaResource;
+use App\Http\Resources\PrevisionsResource;
 
 class PlatjaController extends Controller
 {
@@ -77,6 +78,21 @@ class PlatjaController extends Controller
         return NULL;
       else
         return new PlatjaResource($platja);
+    }
+    else
+      return NULL;
+  }
+
+  public function previsio($municipi_slug, $platja_slug)
+  {
+    $platja=Platja::where(['slug'=>$platja_slug])->first();
+
+    if($platja)
+    {
+      if($platja->municipi->slug!=$municipi_slug)
+        return NULL;
+      else
+        return new PrevisionsResource($platja->previsions);
     }
     else
       return NULL;
