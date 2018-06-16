@@ -31,43 +31,11 @@ class PlatjaController extends Controller
     return json_decode($matches[1][0]);
   }
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
   public function index()
   {
     return [ 'platges' => 'TODO' ];
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request)
-  {
-    //
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Platja  $platja
-   * @return \Illuminate\Http\Response
-   */
   public function show($municipi_slug, $platja_slug)
   {
     $platja=Platja::where(['slug'=>$platja_slug])->first();
@@ -90,45 +58,20 @@ class PlatjaController extends Controller
     if($platja)
     {
       if($platja->municipi->slug!=$municipi_slug)
-        return NULL;
+      {
+        return response()->json([
+          'previsio' => NULL,
+        ], 404);
+      }
       else
-        return new PrevisionsResource($platja->previsions);
+      {
+        return new PrevisionsResource($platja->previsions);  
+      }
     }
     else
-      return NULL;
+      return response()->json([
+        'previsio' => NULL,
+      ], 404);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Platja  $platja
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Platja $platja)
-  {
-    //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Platja  $platja
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, Platja $platja)
-  {
-    //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Platja  $platja
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy(Platja $platja)
-  {
-    //
-  }
 }
