@@ -8,6 +8,8 @@ use App\Http\Resources\MunicipiResource;
 use App\Http\Resources\PrevisionsResource;
 use App\Http\Resources\PlatgesResource;
 use App\Municipi;
+use Illuminate\Support\Facades\Log;
+use App\Jobs\GetPrevisioMunicipal;
 
 class MunicipiController extends Controller
 {
@@ -64,7 +66,25 @@ class MunicipiController extends Controller
   public function previsio($municipi_slug)
   {
     $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
-    return new PrevisionsResource($municipi->previsions);
+    if($municipi->previsions->count()==0)
+    {
+      try
+      {
+        Log::info("scheduled job GetPrevisioMunicipal: ".$municipi_slug);
+        dispatch(new GetPrevisioMunicipal($municipi_slug));
+      }
+      catch(\Exception $e)
+      {
+        Log::info("-_(._.)_-");
+        Log::info($e);
+      }
+
+      return response()->json([
+        'previsio' => NULL,
+      ], 503);
+    }
+    else
+      return new PrevisionsResource($municipi->previsions);
   }
 
   public function platges($municipi_slug)
