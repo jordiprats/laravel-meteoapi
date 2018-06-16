@@ -63,6 +63,12 @@ class MunicipiController extends Controller
     return new MunicipiResource($municipi);
   }
 
+  public function geoSearch($longitude, $latitude)
+  {
+    //$municipi = Municipi::where(['slug'=>$municipi_slug])->first();
+    return ['TODO'=>true];
+  }
+
   public function previsio($municipi_slug)
   {
     $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
