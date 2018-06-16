@@ -6,6 +6,8 @@ use App\Platja;
 use Illuminate\Http\Request;
 use App\Http\Resources\PlatjaResource;
 use App\Http\Resources\PrevisionsResource;
+use Illuminate\Support\Facades\Log;
+use App\Jobs\GetPrevisioPlatja;
 
 class PlatjaController extends Controller
 {
@@ -65,7 +67,25 @@ class PlatjaController extends Controller
       }
       else
       {
-        return new PrevisionsResource($platja->previsions);  
+        if($platja->previsions->count()==0)
+        {
+          try
+          {
+            Log::info("scheduled job GetPrevisioPlatja: ".$platja_slug);
+            dispatch(new GetPrevisioPlatja($platja_slug));
+          }
+          catch(\Exception $e)
+          {
+            Log::info("-_(._.)_-");
+            Log::info($e);
+          }
+
+          return response()->json([
+            'previsio' => NULL,
+          ], 503);
+        }
+        else
+          return new PrevisionsResource($platja->previsions);
       }
     }
     else
