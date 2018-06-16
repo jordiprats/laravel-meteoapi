@@ -54,33 +54,11 @@ class MunicipiController extends Controller
     return new MunicipisResource(Municipi::all());
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create()
+  public function show($municipi_slug)
   {
-    //
+    return ['TODO' => true];
   }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request)
-  {
-    //
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Municipi  $municipi
-   * @return \Illuminate\Http\Response
-   */
   public function previsio($municipi_slug)
   {
     $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
@@ -91,39 +69,5 @@ class MunicipiController extends Controller
   {
     $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
     return new PlatgesResource($municipi->platges);
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Municipi  $municipi
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Municipi $municipi)
-  {
-      //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Municipi  $municipi
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, Municipi $municipi)
-  {
-      //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Municipi  $municipi
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy(Municipi $municipi)
-  {
-      //
   }
 }
