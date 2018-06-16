@@ -27,3 +27,8 @@ Route::get('/municipis/{municipi_slug}/platges/{platja_slug}/previsio', 'PlatjaC
 
 Route::get('/comarques', 'ComarcaController@index')->name('comarques.list');
 Route::get('/comarques/{comarca_slug}', 'ComarcaController@show')->name('comarca.show');
+
+Route::get('/estat', function()
+{
+    return ['estat' => 'República de Catalunya'];
+});
