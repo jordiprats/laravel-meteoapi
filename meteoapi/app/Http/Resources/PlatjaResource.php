@@ -19,7 +19,6 @@ class PlatjaResource extends JsonResource
       'slug' => $this->slug,
       'latitude' => $this->latitude,
       'longitude' => $this->longitude,
-      'municipi' => $this->municipi->nom,
       'municipi_slug' => $this->municipi->slug,
     ];
   }

@@ -17,7 +17,6 @@ class MunicipiResource extends JsonResource
     return [
       'nom' => $this->nom,
       'slug' => $this->slug,
-      'comarca' => $this->comarca->nom,
       'comarca_slug' => $this->comarca->slug,
       'numero_platges' => $this->platges()->count(),
     ];
