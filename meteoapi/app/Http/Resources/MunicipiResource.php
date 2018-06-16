@@ -19,6 +19,7 @@ class MunicipiResource extends JsonResource
       'slug' => $this->slug,
       'comarca' => $this->comarca->nom,
       'comarca_slug' => $this->comarca->slug,
+      // 'numero_platges' => $this->getPlatgesCount,
     ];
   }
 }

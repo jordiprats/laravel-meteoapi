@@ -18,6 +18,11 @@ class Municipi extends Model
     return $this->hasMany(Platja::class);
   }
 
+  public function getPlatgesCount()
+  {
+    return $this->hasMany(Platja::class)->count();
+  }
+
   public function previsions()
   {
     return $this->hasMany(Previsio::class)->where('tipus', '=', Previsio::PREVISIO_MUNICIPAL)->latest('data_previsio')->take(7);

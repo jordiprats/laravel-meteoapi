@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\MunicipisResource;
+use App\Http\Resources\MunicipiResource;
 use App\Http\Resources\PrevisionsResource;
 use App\Http\Resources\PlatgesResource;
 use App\Municipi;
@@ -56,7 +57,8 @@ class MunicipiController extends Controller
 
   public function show($municipi_slug)
   {
-    return ['TODO' => true];
+    $municipi = Municipi::where(['slug'=>$municipi_slug])->first();
+    return new MunicipiResource($municipi);
   }
 
   public function previsio($municipi_slug)
