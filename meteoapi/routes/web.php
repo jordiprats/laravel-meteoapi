@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::get('/platges', 'PlatjaController@index')->name('platges.list');
+Route::get('/platges/geosearch/{longitude}/{latitude}', 'PlatjaController@geoSearch')->name('platges.geosearch');
 
 Route::get('/municipis', 'MunicipiController@index')->name('municipis.list');
 Route::get('/municipis/geosearch/{longitude}/{latitude}', 'MunicipiController@geoSearch')->name('municipis.geosearch');

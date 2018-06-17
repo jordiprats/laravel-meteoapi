@@ -38,6 +38,11 @@ class PlatjaController extends Controller
     return [ 'platges' => 'TODO' ];
   }
 
+  public function geoSearch($longitude, $latitude)
+  {
+    return ['TODO'=>true];
+  }
+
   public function show($municipi_slug, $platja_slug)
   {
     $platja=Platja::where(['slug'=>$platja_slug])->first();
