@@ -65,6 +65,12 @@ class MunicipiController extends Controller
 
   public function geoSearch($longitude, $latitude)
   {
+    $municipi_raw = DB::table('municipis')
+      ->select(DB::raw('*, ASIN(SQRT(POWER(SIN(('.$latitude.' - abs(municipis.latitude)) * pi()/180 / 2), 2) +  COS('.$latitude.' * pi()/180 ) * COS(abs(muncipis.latitude) * pi()/180) *  POWER(SIN(('.$longitude.' - municipis.logitude) * pi()/180 / 2), 2) )) as  distance'))
+      ->havingRaw('distance > ?', [15])
+      ->orderByRaw('distance')
+      ->get();
+    Log::info(print_r($municipi_raw, true));
     //$municipi = Municipi::where(['slug'=>$municipi_slug])->first();
     return ['TODO'=>true];
   }
