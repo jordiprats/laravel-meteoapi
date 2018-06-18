@@ -10,6 +10,7 @@ use App\Http\Resources\PlatgesResource;
 use App\Municipi;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\GetPrevisioMunicipal;
+use Illuminate\Support\Facades\DB;
 
 class MunicipiController extends Controller
 {
@@ -66,7 +67,7 @@ class MunicipiController extends Controller
   public function geoSearch($longitude, $latitude)
   {
     $municipi_raw = DB::table('municipis')
-      ->select(DB::raw('*, ASIN(SQRT(POWER(SIN(('.$latitude.' - abs(municipis.latitude)) * pi()/180 / 2), 2) +  COS('.$latitude.' * pi()/180 ) * COS(abs(muncipis.latitude) * pi()/180) *  POWER(SIN(('.$longitude.' - municipis.logitude) * pi()/180 / 2), 2) )) as  distance'))
+      ->select(DB::raw('*, ASIN(SQRT(POWER(SIN(('.$latitude.' - abs(municipis.latitude)) * pi()/180 / 2), 2) +  COS('.$latitude.' * pi()/180 ) * COS(abs(municipis.latitude) * pi()/180) *  POWER(SIN(('.$longitude.' - municipis.longitude) * pi()/180 / 2), 2) )) as  distance'))
       ->havingRaw('distance > ?', [15])
       ->orderByRaw('distance')
       ->get();
