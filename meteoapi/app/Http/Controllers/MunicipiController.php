@@ -64,27 +64,30 @@ class MunicipiController extends Controller
     return new MunicipiResource($municipi);
   }
 
-  public function geoSearch($longitude, $latitude)
+  public function geoSearch($latitude, $longitude)
   {
     //ORDER BY ((lat-$user_lat)*(lat-$user_lat)) + ((lng - $user_lng)*(lng - $user_lng)) ASC
-    $municipi_raw = DB::table('municipis')
-      ->orderByRaw('((municipis.latitude-'.$latitude.')*(municipis.latitude-'.$latitude.')) + ((municipis.longitude - '.$longitude.')*(municipis.longitude - '.$longitude.')) ASC')
+    // $municipi_raw = DB::table('municipis')
+    //   ->orderByRaw('((municipis.latitude-'.$latitude.')*(municipis.latitude-'.$latitude.')) + ((municipis.longitude - '.$longitude.')*(municipis.longitude - '.$longitude.')) ASC')
+    //   ->take(5)
+    //   ->get();
+    $municipis_raw = DB::table('municipis')
+      ->select(DB::raw('*, 6371 * acos (
+        cos ( radians('.$latitude.') )
+      * cos( radians( municipis.latitude ) )
+      * cos( radians( municipis.longitude ) - radians('.$longitude.') )
+      + sin ( radians('.$latitude.') )
+      * sin( radians( municipis.latitude ) )
+      ) as distance'))
+      ->havingRaw('distance < ?', [15])
+      ->orderByRaw('distance')
       ->take(5)
       ->get();
-    // $municipi_raw = DB::table('municipis')
-    //   ->select(DB::raw('*, 6371 * acos (
-    //     cos ( radians('.$latitude.') )
-    //   * cos( radiansa( municipis.latitude ) )
-    //   * cos( radians( municipis.longitude ) - radians('.$longitude.') )
-    //   + sin ( radians('.$latitude.') )
-    //   * sin( radians( municipis.latitude ) )
-    //   ) as distance'))
-    //   ->havingRaw('distance > ?', [15])
-    //   ->orderByRaw('distance')
-    //   ->get();
-    Log::info(print_r($municipi_raw, true));
+    Log::info(print_r($municipis_raw, true));
+
+    $municipis = Municipi::hydrate($municipis_raw->toArray());
     //$municipi = Municipi::where(['slug'=>$municipi_slug])->first();
-    return ['TODO'=>true];
+    return new MunicipisResource($municipis);
   }
 
   public function previsio($municipi_slug)
