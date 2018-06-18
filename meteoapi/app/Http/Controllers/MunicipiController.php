@@ -66,6 +66,7 @@ class MunicipiController extends Controller
 
   public function geoSearch($longitude, $latitude)
   {
+    //ORDER BY ((lat-$user_lat)*(lat-$user_lat)) + ((lng - $user_lng)*(lng - $user_lng)) ASC
     $municipi_raw = DB::table('municipis')
       ->select(DB::raw('*, 6371 * acos (
         cos ( radians('.$latitude.') )
