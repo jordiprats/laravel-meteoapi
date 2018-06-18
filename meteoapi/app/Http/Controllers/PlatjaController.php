@@ -9,6 +9,7 @@ use App\Http\Resources\PlatgesResource;
 use App\Http\Resources\PrevisionsResource;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\GetPrevisioPlatja;
+use Illuminate\Support\Facades\DB;
 
 class PlatjaController extends Controller
 {
@@ -39,9 +40,25 @@ class PlatjaController extends Controller
     return new PlatgesResource(Platja::all());
   }
 
-  public function geoSearch($longitude, $latitude)
+  public function geoSearch($latitude, $longitude)
   {
-    return ['TODO'=>true];
+    $platges_raw = DB::table('platges')
+      ->select(DB::raw('*, 6371 * acos (
+        cos ( radians('.$latitude.') )
+      * cos( radians( platges.latitude ) )
+      * cos( radians( platges.longitude ) - radians('.$longitude.') )
+      + sin ( radians('.$latitude.') )
+      * sin( radians( platges.latitude ) )
+      ) as distance'))
+      ->havingRaw('distance < ?', [15])
+      ->orderByRaw('distance')
+      ->take(5)
+      ->get();
+    // Log::info(print_r($platges_raw, true));
+
+    $platges = Platja::hydrate($platges_raw->toArray());
+    //$municipi = Municipi::where(['slug'=>$municipi_slug])->first();
+    return new PlatgesResource($platges);
   }
 
   public function show($municipi_slug, $platja_slug)

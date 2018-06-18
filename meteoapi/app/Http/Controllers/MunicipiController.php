@@ -83,7 +83,7 @@ class MunicipiController extends Controller
       ->orderByRaw('distance')
       ->take(5)
       ->get();
-    Log::info(print_r($municipis_raw, true));
+    // Log::info(print_r($municipis_raw, true));
 
     $municipis = Municipi::hydrate($municipis_raw->toArray());
     //$municipi = Municipi::where(['slug'=>$municipi_slug])->first();
