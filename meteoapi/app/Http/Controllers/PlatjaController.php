@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Platja;
 use Illuminate\Http\Request;
 use App\Http\Resources\PlatjaResource;
+use App\Http\Resources\PlatgesResource;
 use App\Http\Resources\PrevisionsResource;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\GetPrevisioPlatja;
@@ -35,7 +36,7 @@ class PlatjaController extends Controller
 
   public function index()
   {
-    return [ 'platges' => 'TODO' ];
+    return new PlatgesResource(Platja::all());
   }
 
   public function geoSearch($longitude, $latitude)
