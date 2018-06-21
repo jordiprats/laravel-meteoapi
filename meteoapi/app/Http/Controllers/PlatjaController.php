@@ -54,7 +54,6 @@ class PlatjaController extends Controller
       ->orderByRaw('distance')
       ->take(5)
       ->get();
-    // Log::info(print_r($platges_raw, true));
 
     $platges = Platja::hydrate($platges_raw->toArray());
     //$municipi = Municipi::where(['slug'=>$municipi_slug])->first();
