@@ -18,9 +18,11 @@ Route::get('/', function () {
 
 Route::get('/platges', 'PlatjaController@index')->name('platges.list');
 Route::get('/platges/geosearch/{longitude}/{latitude}', 'PlatjaController@geoSearch')->name('platges.geosearch');
+Route::get('/platges/geosearch/{longitude}/{latitude}/{limit}', 'PlatjaController@geoSearch')->name('platges.geosearchlimit');
 
 Route::get('/municipis', 'MunicipiController@index')->name('municipis.list');
 Route::get('/municipis/geosearch/{longitude}/{latitude}', 'MunicipiController@geoSearch')->name('municipis.geosearch');
+Route::get('/municipis/geosearch/{longitude}/{latitude}/{limit}', 'MunicipiController@geoSearch')->name('municipis.geosearchlimit');
 Route::get('/municipis/{municipi_slug}', 'MunicipiController@show')->name('municipis.show');
 Route::get('/municipis/{municipi_slug}/previsio', 'MunicipiController@previsio')->name('municipis.previsio');
 Route::get('/municipis/{municipi_slug}/platges', 'MunicipiController@platges')->name('municipis.platges');

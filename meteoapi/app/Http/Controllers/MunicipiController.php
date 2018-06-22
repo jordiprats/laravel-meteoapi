@@ -64,7 +64,7 @@ class MunicipiController extends Controller
     return new MunicipiResource($municipi);
   }
 
-  public function geoSearch($latitude, $longitude)
+  public function geoSearch($latitude, $longitude, $limit = 5)
   {
     //ORDER BY ((lat-$user_lat)*(lat-$user_lat)) + ((lng - $user_lng)*(lng - $user_lng)) ASC
     // $municipi_raw = DB::table('municipis')
@@ -81,7 +81,7 @@ class MunicipiController extends Controller
       ) as distance'))
       ->havingRaw('distance < ?', [15])
       ->orderByRaw('distance')
-      ->take(5)
+      ->take($limit)
       ->get();
     // Log::info(print_r($municipis_raw, true));
 

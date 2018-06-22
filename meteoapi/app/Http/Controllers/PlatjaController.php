@@ -40,7 +40,7 @@ class PlatjaController extends Controller
     return new PlatgesResource(Platja::all());
   }
 
-  public function geoSearch($latitude, $longitude)
+  public function geoSearch($latitude, $longitude, $limit = 5)
   {
     $platges_raw = DB::table('platges')
       ->select(DB::raw('*, 6371 * acos (
@@ -52,7 +52,7 @@ class PlatjaController extends Controller
       ) as distance'))
       ->havingRaw('distance < ?', [15])
       ->orderByRaw('distance')
-      ->take(5)
+      ->take($limit)
       ->get();
 
     $platges = Platja::hydrate($platges_raw->toArray());
