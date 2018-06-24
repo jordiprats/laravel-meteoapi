@@ -2,6 +2,36 @@
 
 API for meteocat
 
+## commands
+
+### meteoapi:initdb
+init db
+
+### meteoapi:getmunicipis
+get municipis
+
+### meteoapi:getplatges
+get platges
+
+### meteoapi:getprevisiomunicipi
+obte previsio municipal
+
+### meteoapi:getprevisioplatja
+get Previso Platja
+
+### meteoapi:showcomarques
+llistat de comarques
+
+### meteoapi:showmunicipis
+llistat de municipis
+
+### meteoapi:showplatges
+llistat de platges
+
+### meteoapi:updateprevisions
+Actualitza previsions existents
+
+
 ## systemd - queue worker
 
 ```
@@ -29,5 +59,5 @@ ExecStart=/usr/bin/php /home/jprats/git/laravel-%i/%i/artisan queue:work --daemo
 
 [Install]
 WantedBy=multi-user.target
-root@shuvak:/etc/systemd/system# 
+root@shuvak:/etc/systemd/system#
 ```
