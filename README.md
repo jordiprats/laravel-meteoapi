@@ -31,6 +31,12 @@ llistat de platges
 ### meteoapi:updateprevisions
 Actualitza previsions existents
 
+actualitzar diariament via cron:
+
+```
+* * * * * php /home/jprats/git/laravel-meteoapi/meteoapi/artisan schedule:run 1>> /dev/null 2>&1
+```
+
 
 ## systemd - queue worker
 
