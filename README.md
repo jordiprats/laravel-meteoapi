@@ -8,7 +8,7 @@ API for meteocat
 init db
 
 ### meteoapi:getmunicipis
-get municipis
+obté/actualitza els municipis
 
 ### meteoapi:getplatges
 get platges
@@ -31,7 +31,7 @@ llistat de platges
 ### meteoapi:updateprevisions
 Actualitza previsions existents
 
-actualitzar dues vegades diariament via cron:
+S'actualitza diariament dues vegades si es configura el següent cron:
 
 ```
 * * * * * php /home/jprats/git/laravel-meteoapi/meteoapi/artisan schedule:run 1>> /dev/null 2>&1
