@@ -2,6 +2,34 @@
 
 API for meteocat
 
+## curl_setopt
+
+### platges
+
+/platges
+/platges/geosearch/{longitude}/{latitude}
+/platges/geosearch/{longitude}/{latitude}/{limit}
+
+### municipis
+
+/municipis
+/municipis/geosearch/{longitude}/{latitude}
+/municipis/geosearch/{longitude}/{latitude}/{limit}
+/municipis/{municipi_slug}
+/municipis/{municipi_slug}/previsio
+/municipis/{municipi_slug}/platges
+/municipis/{municipi_slug}/platges/{platja_slug}
+/municipis/{municipi_slug}/platges/{platja_slug}/previsio
+
+### comarques
+
+/comarques
+/comarques/{comarca_slug}
+
+### estat
+
+/estat
+
 ## commands
 
 ### meteoapi:initdb
