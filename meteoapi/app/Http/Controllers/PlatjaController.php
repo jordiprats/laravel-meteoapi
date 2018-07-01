@@ -107,7 +107,7 @@ class PlatjaController extends Controller
           ], 503);
         }
         else
-          return new PrevisionsResource($platja->previsions);
+          return new PrevisionsResource($platja->previsions->take(24*3));
       }
     }
     else

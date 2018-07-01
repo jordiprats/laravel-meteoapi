@@ -111,7 +111,7 @@ class MunicipiController extends Controller
       ], 503);
     }
     else
-      return new PrevisionsResource($municipi->previsions);
+      return new PrevisionsResource($municipi->previsions->take(7));
   }
 
   public function platges($municipi_slug)
